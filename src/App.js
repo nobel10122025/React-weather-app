@@ -1,19 +1,12 @@
 import React , {useState , useEffect} from 'react'
 import './App.css';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green, indigo } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import temp_felt from './images/temp_felt.png';
-import humid from './images/humidity.png';
-import wind_speed from './images/wind_speed.png';
-import visible from './images/visible.png';
-import wind_direction from './images/wind-direction.png';
-import air_pressure from './images/air-pressure.png';
 import SearchField from './Components/SearchField';
+import Data from './Components/ComponentList';
+import ComponentContent from './Components/ComponentContent';
 
 const theme = createTheme({
   palette : {
@@ -23,6 +16,7 @@ const theme = createTheme({
   }
 });
 function App() {
+  const [cards , setCards] = useState(Data)
   const [values , setValues] = useState({})
   const [search , setSearch] = useState('Delhi')
 
@@ -84,52 +78,7 @@ function App() {
             <Typography variant="h5" textAlign="center" color="primary">{values.description}</ Typography>
           </Grid>
         </Grid>
-          <Box  sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          '& > :not(style)': {
-            m: 2,
-            width: 128,
-            height: 128,
-            p: 2,
-            textAlign : "center",
-            backgroundColor:"hsla(0, 0%, 100%, 0.5)",
-          },
-        }}
-        justifyContent="center" 
-        alignItems="center"
-        >
-            <Paper>
-              <img src={temp_felt} alt="temp icon" />
-              <Typography variant="subtitle1">Temperature Felt</Typography>
-              <Typography variant="h6">{`${FarenToCelsius(values.feels_like)}°C`}</Typography>
-            </Paper>
-            <Paper >
-              <img src={humid} alt=" humidity icon" />
-              <Typography variant="subtitle1">Humidity</Typography>
-              <Typography variant="h6">{values.humidity}%</Typography>
-            </Paper>
-            <Paper >
-              <img src={wind_speed} alt="wind-speed icon" />
-              <Typography variant="subtitle1">Wind Speed</Typography>
-              <Typography variant="h6">{values.speed} m/s</Typography>
-            </Paper>
-            <Paper >
-              <img src={visible} alt="visibility icon" />
-              <Typography variant="subtitle1">Visibility</Typography>
-              <Typography variant="h6">{values.visible} m</Typography>
-            </Paper>
-            <Paper >
-              <img src={wind_direction} alt="wind-dir icon" />              
-              <Typography variant="subtitle1">Wind direction</Typography>
-            <Typography variant="h6">{values.deg}°</Typography>
-            </Paper>
-            <Paper >
-              <img src={air_pressure} alt="air-pressure icon"/>              
-              <Typography variant="subtitle1">Air pressure </Typography>
-              <Typography variant="h6">{values.pressure} hPa</Typography>
-            </Paper>
-          </Box>
+        <ComponentContent data = {cards} values = {values}/>
       </Container>
     </ThemeProvider>
     </div>

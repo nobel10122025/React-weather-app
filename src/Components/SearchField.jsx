@@ -9,7 +9,7 @@ function SearchField({handleChange , handleSubmit}) {
             onChange={handleChange}
             variant="standard"
             label="Enter City"
-            borderColor="primary"
+            bordercolor="primary"
             className="searchbox"
             />
             <Button 
