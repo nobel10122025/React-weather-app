@@ -16,14 +16,6 @@ import air_pressure from './images/air-pressure.png';
 import SearchField from './Components/SearchField';
 
 const theme = createTheme({
-  // palette: {
-  //   primary: {
-  //     main: indigo[500],
-  //   },
-  //   secondary: {
-  //     main: indigo[900],
-  //   }
-  // },
   palette : {
     secondary: {
       main: '#FFF',
@@ -98,9 +90,10 @@ function App() {
           '& > :not(style)': {
             m: 2,
             width: 128,
-            height: 158,
+            height: 128,
             p: 2,
-            textAlign : "center"
+            textAlign : "center",
+            backgroundColor:"hsla(0, 0%, 100%, 0.5)",
           },
         }}
         justifyContent="center" 

@@ -10,7 +10,6 @@ function SearchField({handleChange , handleSubmit}) {
             variant="standard"
             label="Enter City"
             borderColor="primary"
-            style={{margin:"2rem"}}
             className="searchbox"
             />
             <Button 
