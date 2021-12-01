@@ -8,7 +8,7 @@ function Card(props) {
 
     function getValues(){
         if(props.name === "Temperature-Felt"){
-        return values.feels_like
+        return Math.round(values.feels_like-273.15)
         }
         if (props.name === "Humidity"){
             return values.humidity

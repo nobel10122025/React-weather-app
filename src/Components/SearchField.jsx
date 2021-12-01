@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
-function SearchField({handleChange , handleSubmit}) {
+function SearchField({handleChange , handleSubmit , addInList}) {
     return (
         <>
             <input
@@ -16,9 +17,18 @@ function SearchField({handleChange , handleSubmit}) {
                 type="submit" 
                 onClick={handleSubmit} 
                 variant="contained"
-                style={{margin:"2rem"}}
+                style={{margin:"1.5rem 2rem"}}
                 color="secondary"
             >Submit</Button>
+            <Box textAlign="center">
+            <Button
+            variant = "contained"
+            onClick = {addInList}
+            sx={{my:1}}
+            >
+                Add city
+            </Button>
+            </Box>
         </>
     )
 }
