@@ -9,6 +9,7 @@ import Data from './Components/ComponentList';
 import ComponentContent from './Components/ComponentContent';
 import Cities from './Components/Cities';
 import CityList from './Components/CityList'
+import CircularIndeterminate from './Components/Loader';
 
 const theme = createTheme({
   palette : {
@@ -23,12 +24,14 @@ function App() {
   const [search , setSearch] = useState('Delhi')
   const [cityList ,setCityList] = useState(CityList)
   const [toggle , setToggle] =useState(false)
+  const [isLoading , setIsLoading]=useState(true)
 
   const getDatafromApi = async () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=c20892d228d168e22a8fbeb713c0f6c1`;
     const response = await fetch(url);
     const data = await response.json();
     console.log("data updates")
+    setIsLoading(false)
     if(data.cod === "404" ){
       alert("City not found. Please enter correct spelling")
       setToggle(false)
@@ -50,10 +53,7 @@ function App() {
       setToggle(false)
     }
   }
-  // useEffect(()=>{
-  //   getDatafromApi();
-  // },[])
-
+  
   useEffect (()=>{
     getDatafromApi();
   },[toggle])
@@ -87,7 +87,9 @@ function App() {
   }
 
   return (
-    <div className="pattern-1">
+      isLoading? (<CircularIndeterminate/>) : 
+      (
+  <div className="pattern-1">
     <ThemeProvider theme={theme}>
       <Container maxWidth="lg">
         <Typography variant="h4" textAlign="center" color="secondary" p={2}>Weather App</Typography>
@@ -124,7 +126,9 @@ function App() {
             />
       </Container>
     </ThemeProvider>
-    </div>
+  </div>
+      )
+    
   );
 }
 
