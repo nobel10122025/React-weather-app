@@ -58,6 +58,11 @@ function App() {
     getDatafromApi();
   },[toggle])
 
+  useEffect(()=>{
+    window.addEventListener('scroll',handleScroll)
+    return window.removeEventListener('scroll',handleScroll)
+  })
+
   const FarenToCelsius = (kelvinTemp) => {
     let celTemp = Math.round(kelvinTemp - 273.15)
     return celTemp
@@ -80,12 +85,15 @@ function App() {
     var PrintNewCity = cityList.filter((city)=>(city.id === index))[0].cityName
     setSearch(PrintNewCity)
     setSearch((state)=>{
-      // console.log(state)
       return state
     }) 
     setToggle(true)
   }
 
+
+  const handleScroll = () => {
+    window.scrollTo({top : 0 ,behavior : 'smooth'})
+  } 
   return (
       isLoading? (<CircularIndeterminate/>) : 
       (
@@ -123,6 +131,7 @@ function App() {
               cityList={cityList} 
               deleteCity={deleteCity}
               handleSubmitList={handleSubmitList}
+              handleScroll={handleScroll}
             />
       </Container>
     </ThemeProvider>

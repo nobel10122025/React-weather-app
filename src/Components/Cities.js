@@ -18,7 +18,10 @@ function Cities(props) {
                         color="#FFF" 
                         sx={{mx:2,cursor:"pointer"}} 
                         key={city.id}
-                        onClick={()=>{props.handleSubmitList(city.id)}}
+                        onClick={()=>{
+                            props.handleScroll();
+                            props.handleSubmitList(city.id);
+                        }}
                     >
                     {city.cityName}
                     <i className="far fa-times-circle" 
